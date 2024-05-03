@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  node-app:
+    container_name: next-dashboard
+    build:
+      context: ./docker
+    ports:
+      - '3010:3000'
+    volumes:
+      - ./:/home/node/app
+    working_dir: /home/node/app
+    command: tail -f /dev/null
+    networks:
+      - app-network
+    #command: nodemon --tls-min-v1.0 server/index.js
+networks:
+  app-network:
+    name: app-network
+    external: true
